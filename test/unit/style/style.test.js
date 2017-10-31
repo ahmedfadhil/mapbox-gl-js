@@ -1441,20 +1441,20 @@ test('Style#queryRenderedFeatures', (t) => {
                 const features = {
                     'land': [{
                         type: 'Feature',
-                        layer: style._layers.land,
+                        layer: style._layers.land.serialize(),
                         geometry: {
                             type: 'Polygon'
                         }
                     }, {
                         type: 'Feature',
-                        layer: style._layers.land,
+                        layer: style._layers.land.serialize(),
                         geometry: {
                             type: 'Point'
                         }
                     }],
                     'landref': [{
                         type: 'Feature',
-                        layer: style._layers.landref,
+                        layer: style._layers.landref.serialize(),
                         geometry: {
                             type: 'Line'
                         }
@@ -1559,7 +1559,7 @@ test('Style#queryRenderedFeatures', (t) => {
 
         t.test('includes paint properties', (t) => {
             const results = style.queryRenderedFeatures([{column: 1, row: 1, zoom: 1}], {}, 0, 0);
-            t.deepEqual(results[2].layer.paint['line-color'], new Color(1, 0, 0, 1));
+            t.deepEqual(results[2].layer.paint['line-color'], 'red');
             t.end();
         });
 
